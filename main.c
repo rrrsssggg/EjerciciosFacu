@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <conio.h>
 #include <stdlib.h>
+#include <conio.h>
 
 #define TAM 10
 #define TAM2 25
@@ -28,62 +28,62 @@ void llenar_v(alumno v[]);
 
 void main ()
 {
-	alumno v[TAM];
+    alumno v[TAM];
 	FILE * pf;
-   int i;
+    int i;
 
-   llenar_v(v);
+    llenar_v(v);
 
-	pf=fopen ("alumnos.dat","wb");
+	pf=fopen ("alumnos.txt","wt");
 
-   if (pf==NULL)
-   	{printf ("\n\nNo se pudo abrir el archivo...");
-      getch ();
-      exit (1);
-      }
+    if (!pf)
+   	{
+        printf ("\n\nNo hay memoria");
+        getch ();
+        exit (1);
+    }
 
-   for (i=0;i<TAM;i++)
-   	fwrite (&v[i],sizeof (alumno),1,pf);
+    for (i=0;i<TAM;i++)
+        fwrite (&v[i],sizeof(alumno),1,pf);
 
-   fclose (pf);
-
-   getch();
+    fclose (pf);
+    getch();
 
 }
 
 
-void llenar_v (alumno v[])
+void llenar_v (alumno *v)
 {
-	int i;
-	for(i=0;i<TAM;i++)
-		{
-      	printf ("\nIngresar nommbre: ");
-         fflush (stdin);
-         gets (v[i].nomb);
-         /*printf ("Ingresar apellido: ");
-         fflush (stdin);
-         gets (v[i].ape);
-         printf ("Ingresar DNI: ");
-         fflush (stdin);
-         scanf ("%d",&v[i].dni);
-         printf ("Ingresar Fecha de Nacimiento en formato dd/mm/aaaa: ");
-         scanf ("%d%d%d", &v[i].fecha_nac.dd,&v[i].fecha_nac.mm,&v[i].fecha_nac.aaaa);
-         fflush (stdin);
-         printf ("Ingresar carrera: ");
-         gets (v[i].car);
-         printf ("Ingresar anio de ingreso: ");
-         scanf ("%d",&v[i].anio_in);
-         printf ("Ingresar Cantidad de Materias Aprobadas: ");
-         scanf ("%d",&v[i].cant_mat_ap);
-         fflush(stdin);
-         printf ("Ingresar cantidad de materias que estoy cursando: ");
-         scanf ("%d",&v[i].cant_mat_curso);
-         fflush (stdin);
-         printf("Ingresar e-mail: ");
-         gets(v[i].mail);
-         */
-         printf("Ingresar Numero de telefono: ");
-         scanf("%d",v[i].tel);
-         fflush (stdin);
+	int *pfi = v+TAM;
+	while(v < pfi)
+    {
+        printf ("\nIngresar nommbre: ");
+        fflush (stdin);
+        gets (v->nomb);
+        printf ("Ingresar apellido: ");
+        fflush (stdin);
+        gets (v->ape);
+        printf ("Ingresar DNI: ");
+        fflush (stdin);
+        scanf ("%d",&v->dni);
+        printf ("Ingresar Fecha de Nacimiento en formato dd/mm/aaaa: ");
+        scanf ("%d/%d/%d",&v->fecha_nac.dd,&v->fecha_nac.mm,&v->fecha_nac.aaaa);
+        fflush (stdin);
+        printf ("Ingresar carrera: ");
+        gets (v->car);
+        printf ("Ingresar anio de ingreso: ");
+        scanf ("%d",&v->anio_in);
+        printf ("Ingresar Cantidad de Materias Aprobadas: ");
+        scanf ("%d",&v->cant_mat_ap);
+        fflush(stdin);
+        printf ("Ingresar cantidad de materias que estoy cursando: ");
+        scanf ("%d",&v->cant_mat_curso);
+        fflush (stdin);
+        printf("Ingresar e-mail: ");
+        gets(v->mail);
+        printf("Ingresar Numero de telefono: ");
+        scanf("%d",&v->tel);
+        fflush (stdin);
+        v++;
       }
 }
