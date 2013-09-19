@@ -6,22 +6,24 @@
 #define TAM2 25
 
 typedef struct
-	{int dd;
-   int mm;
-   int aaaa;
+	{
+	int dd;
+   	int mm;
+   	int aaaa;
    }fecha;
 
 typedef struct
-	{char nomb[TAM2];
-   char ape[TAM2];
-   int dni;
-   fecha fecha_nac;
-   char car[TAM2];
-   int anio_in;
-   int cant_mat_ap;
-   int cant_mat_curso;
+	{
+	char nomb[TAM2];
+   	char ape[TAM2];
+   	int dni;
+   	fecha fecha_nac;
+   	char car[TAM2];
+   	int anio_in;
+   	int cant_mat_ap;
+   	int cant_mat_curso;
 	char mail[50];
-   int tel;
+   	int tel;
    }alumno;
 
 void llenar_v(alumno v[]);
